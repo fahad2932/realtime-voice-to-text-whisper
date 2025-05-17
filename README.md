@@ -1,16 +1,14 @@
->Listens continuously on your default microphone
-VAD-driven capture: Once triggered, we keep pulling in 1 s blocks and running Silero VAD on them. Any block with zero speech timestamps counts toward “silence.” After 1 s of continuous silence, we consider your utterance done.
+🚀 Real-Time Voice Command ASR Prototype
+Real-time automatic speech recognition (ASR) with wake-phrase activation and VAD-driven recording.
 
+🛠️ Features
+Continuous Listening: Continuously monitors the default microphone for the wake-phrase "start transcription".
 
->Runs a tiny Whisper model (via CTranslate2) on incoming 1 s windows to spot the wake-phrase “start transcription”
-Wake-phrase detection: When it hears that phrase, it switches into VAD-driven recording mode, collecting audio until it sees 1 s of silence. We use a tiny.en model (quantized to INT8) to transcribe each 1 s block as it arrives. If the text contains “start transcription”, we assume you’ve spoken the command.
+Wake-Phrase Detection: Uses a tiny Whisper model (INT8) via CTranslate2 to spot the wake-phrase within 1 s windows.
 
+VAD-Driven Capture: Once triggered, records in 1 s blocks using Silero VAD. Ends capture after 1 s of silence.
 
->Sends that buffered speech chunk to a larger Whisper model for high-quality transcription
-Real-time feel: Because we process 1 s windows on the fly, you never wait for the entire file—you speak, and within a second of finishing, you’ll see your text.
+Efficient Transcription: Buffers speech and sends it to a larger Whisper model for high-quality transcription.
 
->Prints each result and then goes back to listening for the wake-phrase
-
-
-
+Instant Feedback: Prints the transcribed text in real time after each utterance.
 
